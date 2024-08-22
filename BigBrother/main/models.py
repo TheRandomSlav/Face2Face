@@ -1,5 +1,5 @@
 from django.db import models
-
+import json
 
 class Persona(models.Model):
     name = models.CharField(max_length=255)

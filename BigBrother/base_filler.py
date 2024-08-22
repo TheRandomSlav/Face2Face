@@ -1,8 +1,15 @@
 from deepface import DeepFace
 import cv2
-from BigBrother.main.models import Persona
+from main.models import *
 import os
 from pathlib import Path
+
+import struct
+import numpy as np
+import json
+
+
+
 
 def create_persona(name, image_path):
 
@@ -11,9 +18,12 @@ def create_persona(name, image_path):
         model_name="VGG-Face")
 
     # Создаем объект Persona
-    persona = Persona.objects.create(name=name, embedding=embedding)
 
-    print("Ready")
+    mid = embedding[0]['embedding']
+    json_embedding = json.dumps(mid)
+    persona = Persona.objects.create(name=name, embedding=json.loads(json_embedding))
+    print('Oki-Doki')
+
     return 0
 
 for file in Path('C:/Users/Acer/OneDrive/Desktop/fs').glob('*.jpg'):
