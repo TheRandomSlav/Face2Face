@@ -3,7 +3,6 @@ import os
 import tkinter as tk
 from tkinter import filedialog
 
-
 def open_file():
   # Создаем экземпляр Tkinter
   root = tk.Tk()
@@ -14,31 +13,30 @@ def open_file():
 
   return file_path
 
-# Задаем путь к видеофайлу и папку для сохранения кадров
-video_path = open_file()
-output_folder = 'C:/Users/Senpai/Videos/shredded_test'
 
-# Замените на путь к вашей папке
+video_path = open_file()
+output_folder = 'C:/Users/Senpai/Videos/shredded_test'  # Замените на путь к вашей папке
+
 # Создаем папку для сохранения кадров, если она не существует
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 
-#Загружаем видео с помощью OpenCV
+# Загружаем видео с помощью OpenCV
 cap = cv2.VideoCapture(video_path)
 
-#Проверяем, удалось ли открыть видео
+# Проверяем, удалось ли открыть видео
 if not cap.isOpened():
     print("Не удалось открыть видео.")
     exit()
 
 frame_count = 0
 
-#Читаем кадры из видео
+# Читаем кадры из видео
 while True:
     ret, frame = cap.read()
 
     if not ret:
-        #Когда кадры закончились
+        # Когда кадры закончились
         break
 
     # Сохраняем каждый кадр в папке
@@ -46,7 +44,8 @@ while True:
     cv2.imwrite(frame_filename, frame)
     print(f"Сохранен кадр {frame_count} в {frame_filename}")
 
-    frame_count += 1 # Освобождаем ресурс видео
+    frame_count += 1
 
+# Освобождаем ресурс видео
 cap.release()
 print("Все кадры сохранены.")
