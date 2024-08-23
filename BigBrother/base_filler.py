@@ -1,8 +1,11 @@
 from deepface import DeepFace
-import cv2
-from BigBrother.main.models import Persona
+from main.models import Persona
 import os
+import django
 from pathlib import Path
+
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'BigBrother.settings')
+# django.setup()
 
 def create_persona(name, image_path):
 
@@ -16,7 +19,8 @@ def create_persona(name, image_path):
     print("Ready")
     return 0
 
-for file in Path('C:/Users/Acer/OneDrive/Desktop/fs').glob('*.jpg'):
+
+for file in Path('C:/Users/Senpai/PycharmProjects/Face2Face/BigBrother/fs').glob('*.jpg'):
     name = file.stem  # Получаем имя файла без расширения
     image_path = str(file)  # Преобразуем путь в строку
     create_persona(name, image_path)
