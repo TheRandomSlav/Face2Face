@@ -7,7 +7,16 @@
 <body>
 
     <h1> #НайдиЛюдей! </h1>
-    <p> Здесь будет форма для загрузки видео</p>
+
+    <p> Здесь у нас форма для загрузки видео</p>
+
+    <form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+  <!-- myfile1 - переменная передающееся в Django -->
+  <input type="file" name="file">
+  <button type="submit">Загрузка</button>
+</form>
+
     <p> А тут - картинки</p>
 
 </body>
